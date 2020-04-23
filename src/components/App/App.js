@@ -1,42 +1,55 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
-import s from './App.scss';
+import React from "react";
+import { Container, Row, Col, Box } from "wix-style-react";
 
-/* <-- To remove demo stuff just copy-paste:
-  \{?/\*\s?<--([\n\n]|.)*?-->\s?\*\/\}?
-  to your search input with RegExp enabled and remove everything matched.
---> */
-
-class App extends React.Component {
-  static propTypes = {
-    t: PropTypes.func,
-  };
-
-  /* <-- Feel free to remove this lifecycle hook */
-  /* <-- Please also remove `yoshi-template-intro` from your package.json */
-  state = {};
-  async componentDidMount() {
-    const { default: TemplateIntro } = await import('yoshi-template-intro');
-    this.setState({ TemplateIntro });
-  } /* --> */
-
-  render() {
-    const { t } = this.props;
-
-    return (
-      <div className={s.root}>
-        <h2 className={s.title} data-testid="app-title">
-          {t('app.title')}
-        </h2>
-
-        {/* <-- Feel free to remove TemplateIntro */}
-        {this.state.TemplateIntro &&
-          React.createElement(this.state.TemplateIntro)}
-        {/* --> */}
-      </div>
-    );
-  }
-}
-
-export default withTranslation()(App);
+export default () => (
+  <Container>
+    <Row>
+      <Col>
+        <Box border="1px solid black" margin="5px">
+          Full row
+        </Box>
+      </Col>
+    </Row>
+    <Row>
+      <Col span={6}>
+        <Box border="1px solid black" margin="5px">
+          I take half of the size
+        </Box>
+      </Col>
+      <Col span={6}>
+        <Box border="1px solid black" margin="5px">
+          me too
+        </Box>
+      </Col>
+    </Row>
+    <Row>
+      <Col span={4}>
+        <Box border="1px solid black" margin="5px">
+          One third
+        </Box>
+      </Col>
+      <Col span={4}>
+        <Box border="1px solid black" margin="5px">
+          Another third
+        </Box>
+      </Col>
+      <Col span={4}>
+        <Box border="1px solid black" margin="5px">
+          Last third
+        </Box>
+      </Col>
+    </Row>
+    <Row>
+      <Col span={4}>
+        <Box border="1px solid black" margin="5px">
+          One third
+        </Box>
+      </Col>
+      <Col span={8}>
+        <Box border="1px solid black" margin="5px">
+          Two! thirds
+        </Box>
+      </Col>
+    </Row>
+  </Container>
+);
