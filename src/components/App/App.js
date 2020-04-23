@@ -1,54 +1,79 @@
 import React from "react";
-import { Card, Col, Row, FormField, Input } from "wix-style-react";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  FormField,
+  Input,
+  Dropdown
+} from "wix-style-react";
 
-class App extends React.Component {
+export default class extends React.Component {
   state = {
-    input1Length: 0,
-    input2Length: 0
+    inputValue: "",
+    dropdownSelectedId: -1
   };
-
   render() {
     return (
-      <div style={{ margin: "10px" }}>
-        <Card>
-          <Card.Header title="first card" />
-          <Card.Divider />
-          <Row>
-            <Col span={12}>
-              <FormField
-                label="An input field"
-                required
-                infoContent="Help me fill the field"
-                charCount={5 - this.state.input1Length}
-              >
-                <Input
-                  onChange={e =>
-                    this.setState({
-                      input1Length: e.target.value.length
-                    })
-                  }
-                />
-              </FormField>
-              <FormField
-                label="An input field"
-                required
-                infoContent="Help me fill the field"
-                charCount={5 - this.state.input2Length}
-              >
-                <Input
-                  onChange={e =>
-                    this.setState({
-                      input2Length: e.target.value.length
-                    })
-                  }
-                />
-              </FormField>
-            </Col>
-          </Row>
-        </Card>
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <Card>
+              <Card.Header title="Inputs and Selection" />
+              <Card.Content>
+                <Container fluid>
+                  <Row>
+                    <Col span={8}>
+                      <FormField
+                        label="<Input/> - A simple Input"
+                        infoContent="Use this for regular text input"
+                      >
+                        <Input
+                          value={this.state.inputValue}
+                          onChange={e =>
+                            this.setState({ inputValue: e.target.value })
+                          }
+                          status="error"
+                        />
+                      </FormField>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col span={8}>
+                      <FormField
+                        label="<Dropdown/> - A simple select component"
+                        infoContent="Use this to pick a value from a set"
+                      >
+                        <Dropdown
+                          selectedId={this.state.dropdownSelectedId}
+                          onSelect={option =>
+                            this.setState({ dropdownSelectedId: option.id })
+                          }
+                          options={[
+                            {
+                              id: 0,
+                              value: "first option"
+                            },
+                            {
+                              id: 1,
+                              value: "second option"
+                            },
+                            {
+                              id: 2,
+                              value: "MY option"
+                            }
+                          ]}
+                        />
+                      </FormField>
+                    </Col>
+                  </Row>
+                </Container>
+              </Card.Content>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
-
-export default App;
