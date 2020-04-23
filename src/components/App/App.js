@@ -1,61 +1,54 @@
 import React from "react";
-import { Container, Row, Col, Card } from "wix-style-react";
+import { Card, Col, Row, FormField, Input } from "wix-style-react";
 
-export default () => (
-  <Container>
-    <Row stretchViewsVertically>
-      <Col span={6}>
-        <Card stretchVertically>
-          <Card.Header title="first card" subtitle="nice" />
-          <Card.Content>some content</Card.Content>
-        </Card>
-      </Col>
-      <Col span={6}>
-        <Card stretchVertically>
-          <Card.Header title="What is Lorem Ipsum?" />
-          <Card.Content>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
-          </Card.Content>
-        </Card>
-      </Col>
-    </Row>
-    <Row stretchViewsVertically>
-      <Col span={4}>
+class App extends React.Component {
+  state = {
+    input1Length: 0,
+    input2Length: 0
+  };
+
+  render() {
+    return (
+      <div style={{ margin: "10px" }}>
         <Card>
-          <Card.Header title="first card" subtitle="one third" />
-          <Card.Content>some content</Card.Content>
+          <Card.Header title="first card" />
+          <Card.Divider />
+          <Row>
+            <Col span={12}>
+              <FormField
+                label="An input field"
+                required
+                infoContent="Help me fill the field"
+                charCount={5 - this.state.input1Length}
+              >
+                <Input
+                  onChange={e =>
+                    this.setState({
+                      input1Length: e.target.value.length
+                    })
+                  }
+                />
+              </FormField>
+              <FormField
+                label="An input field"
+                required
+                infoContent="Help me fill the field"
+                charCount={5 - this.state.input2Length}
+              >
+                <Input
+                  onChange={e =>
+                    this.setState({
+                      input2Length: e.target.value.length
+                    })
+                  }
+                />
+              </FormField>
+            </Col>
+          </Row>
         </Card>
-      </Col>
-      <Col span={4}>
-        <Card>
-          <Card.Header title="What is Lorem Ipsum?" />
-          <Card.Content>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
-          </Card.Content>
-        </Card>
-      </Col>
-      <Col span={4}>
-        <Card>
-          <Card.Header title="third card" subtitle="last third" />
-          <Card.Content>some content</Card.Content>
-        </Card>
-      </Col>
-    </Row>
-  </Container>
-);
+      </div>
+    );
+  }
+}
+
+export default App;
