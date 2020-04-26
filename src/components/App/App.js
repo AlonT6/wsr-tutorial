@@ -114,6 +114,7 @@ export default class extends React.Component {
                     <Col span={6}>
                       <FormField label="Name" required>
                         <Input
+                          dataHook="name-input"
                           value={this.state.name}
                           onChange={e =>
                             this.setState({ name: e.target.value })
@@ -130,6 +131,7 @@ export default class extends React.Component {
                         infoContent="Use this to pick a value from a set"
                       >
                         <Dropdown
+                          dataHook="color-dropdown"
                           placeholder="Enter a color"
                           selectedId={this.state.dropdownSelectedId}
                           onSelect={option =>
@@ -143,6 +145,7 @@ export default class extends React.Component {
                   <Row>
                     <Box align="space-between">
                       <Checkbox
+                        dataHook="agree-conditions-checkbox"
                         checked={this.state.agreed}
                         onChange={() =>
                           this.setState({ agreed: !this.state.agreed })
@@ -152,6 +155,7 @@ export default class extends React.Component {
                       </Checkbox>
                       <Box align="space-between" padding="2">
                         <Button
+                          dataHook="clear-button"
                           priority="secondary"
                           style={{ marginRight: "12px" }}
                           onClick={this.clearForm}
@@ -159,6 +163,7 @@ export default class extends React.Component {
                           Clear
                         </Button>
                         <Button
+                          dataHook="submit-button"
                           disabled={!this.isSubmitEnabled()}
                           onClick={this.handleSubmit}
                         >
@@ -178,6 +183,7 @@ export default class extends React.Component {
                   <Card.Content>
                     <FormField label="Fun Fact">
                       <InputArea
+                        dataHook="fun-fact-input"
                         rows={4}
                         placeholder="Enter something interesting"
                         value={this.state.funFact}
@@ -191,7 +197,7 @@ export default class extends React.Component {
               </Row>
               <Row>
                 {this.state.submitted && (
-                  <Card>
+                  <Card data-testid="submitted-details">
                     <Card.Header title="Submitted Info" />
                     <Card.Divider />
                     <Card.Content>
@@ -200,7 +206,9 @@ export default class extends React.Component {
                           <Text skin="standard">Name:</Text>
                         </Col>
                         <Col span={6}>
-                          <Text skin="standard">{this.submittedInfo.name}</Text>
+                          <Text dataHook="submitted-name" skin="standard">
+                            {this.submittedInfo.name}
+                          </Text>
                         </Col>
                       </Row>
                       <Row>
@@ -208,7 +216,7 @@ export default class extends React.Component {
                           <Text skin="standard">Favorite Color:</Text>
                         </Col>
                         <Col span={6}>
-                          <Text skin="standard">
+                          <Text dataHook="submitted-color" skin="standard">
                             {this.submittedInfo.color}
                           </Text>
                         </Col>
@@ -218,7 +226,7 @@ export default class extends React.Component {
                           <Text skin="standard">Fun Fact:</Text>
                         </Col>
                         <Col span={6}>
-                          <Text skin="standard">
+                          <Text dataHook="submitted-fun-fact" skin="standard">
                             {this.submittedInfo.funFact}
                           </Text>
                         </Col>
